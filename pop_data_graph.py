@@ -20,10 +20,10 @@ df['predicted population for gompertz model'] = df['years from 1970'].apply(gomp
 df['predicted population for logistic model'] = df['years from 1970'].apply(logistics_eq)
 
 df = df.drop(columns= ['predicted for logistics '])
-#plt.plot(df['year'], df['population'], label = "population")
-#plt.plot(df['year'], df['predicted population for gompertz model'], label = "Gompertz model prediction")
-#plt.legend()
-#plt.show()
+plt.scatter(df['year'], df['population'], label = "population")
+plt.plot(df['year'], df['predicted population for linear model'], label = "Linear model prediction")
+plt.legend()
+plt.show()
 
 
 def per_error(actual, predicted):
@@ -41,8 +41,6 @@ df.to_csv("/Users/rikkumar/desktop/ind_pop_data.csv", index = False)
 
 from sklearn.metrics import r2_score
 print(df)
-
-from sklearn.metrics import r2_score
 print(r2_score(df['population'], df['predicted population for gompertz model']))
 print(r2_score(df['population'], df['predicted population for logistic model']))
 print(r2_score(df['population'], df['predicted population for linear model']))
